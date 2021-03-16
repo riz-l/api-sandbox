@@ -120,7 +120,7 @@ export default function ApiFetch({ db }) {
   }, [db]);
 
   // Fetch API data
-  async function getApiData() {
+  function getApiData() {
     axios
       .all([apiUrl.get(``, {})])
       .then(
@@ -153,6 +153,43 @@ export default function ApiFetch({ db }) {
       });
   }
 
+  // Sets the values in the store and in the state
+  const setFormValues = (id) => (value) => {
+    db.formData.put({ id, value });
+
+    // Update state
+    setSavedApiData((prevFormValues) => ({
+      ...prevFormValues,
+      [id]: value,
+    }));
+  };
+
+  // ... used for stringed text inputs
+  const handleInputValues = (id) => (value) => setFormValues(id)(value);
+
+  //   const getItDone = () => {
+  //   handleInputValues("abilities")(savedApiData.abilities),
+  //     handleInputValues("base_experience")(savedApiData.base_experience),
+  //     handleInputValues("forms")(savedApiData.forms),
+  //     handleInputValues("game_indices")(savedApiData.game_indices),
+  //     handleInputValues("height")(savedApiData.height),
+  //     handleInputValues("held_items")(savedApiData.held_items),
+  //     handleInputValues("id")(savedApiData.id),
+  //     handleInputValues("is_default")(savedApiData.is_default),
+  //     handleInputValues("location_area_encounters")(
+  //       savedApiData.location_area_encounters
+  //     ),
+  //     handleInputValues("moves")(savedApiData.moves),
+  //     handleInputValues("name")(savedApiData.name),
+  //     handleInputValues("order")(savedApiData.order),
+  //     handleInputValues("past_types")(savedApiData.past_types),
+  //     handleInputValues("species")(savedApiData.species),
+  //     handleInputValues("sprites")(savedApiData.sprites),
+  //     handleInputValues("stats")(savedApiData.stats),
+  //     handleInputValues("types")(savedApiData.types),
+  //     handleInputValues("weight")(savedApiData.weight);
+  //   };
+
   return (
     <>
       <Container>
@@ -160,7 +197,33 @@ export default function ApiFetch({ db }) {
         <button type="button" onClick={getApiData}>
           Click for API fetch
         </button>
-        <button type="button">Save API data to Local DB</button>
+        <button
+          type="button"
+          onClick={() => {
+            handleInputValues("abilities")(savedApiData.abilities);
+            handleInputValues("base_experience")(savedApiData.base_experience);
+            handleInputValues("forms")(savedApiData.forms);
+            handleInputValues("game_indices")(savedApiData.game_indices);
+            handleInputValues("height")(savedApiData.height);
+            handleInputValues("held_items")(savedApiData.held_items);
+            handleInputValues("id")(savedApiData.id);
+            handleInputValues("is_default")(savedApiData.is_default);
+            handleInputValues("location_area_encounters")(
+              savedApiData.location_area_encounters
+            );
+            handleInputValues("moves")(savedApiData.moves);
+            handleInputValues("name")(savedApiData.name);
+            handleInputValues("order")(savedApiData.order);
+            handleInputValues("past_types")(savedApiData.past_types);
+            handleInputValues("species")(savedApiData.species);
+            handleInputValues("sprites")(savedApiData.sprites);
+            handleInputValues("stats")(savedApiData.stats);
+            handleInputValues("types")(savedApiData.types);
+            handleInputValues("weight")(savedApiData.weight);
+          }}
+        >
+          Save API data to Local DB
+        </button>
 
         <Wrapper>
           <JSONPretty
