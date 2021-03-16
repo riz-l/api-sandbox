@@ -164,31 +164,32 @@ export default function ApiFetch({ db }) {
     }));
   };
 
-  // ... used for stringed text inputs
+  // ... assigns id/values appropriately in IndexedDB
   const handleInputValues = (id) => (value) => setFormValues(id)(value);
 
-  //   const getItDone = () => {
-  //   handleInputValues("abilities")(savedApiData.abilities),
-  //     handleInputValues("base_experience")(savedApiData.base_experience),
-  //     handleInputValues("forms")(savedApiData.forms),
-  //     handleInputValues("game_indices")(savedApiData.game_indices),
-  //     handleInputValues("height")(savedApiData.height),
-  //     handleInputValues("held_items")(savedApiData.held_items),
-  //     handleInputValues("id")(savedApiData.id),
-  //     handleInputValues("is_default")(savedApiData.is_default),
-  //     handleInputValues("location_area_encounters")(
-  //       savedApiData.location_area_encounters
-  //     ),
-  //     handleInputValues("moves")(savedApiData.moves),
-  //     handleInputValues("name")(savedApiData.name),
-  //     handleInputValues("order")(savedApiData.order),
-  //     handleInputValues("past_types")(savedApiData.past_types),
-  //     handleInputValues("species")(savedApiData.species),
-  //     handleInputValues("sprites")(savedApiData.sprites),
-  //     handleInputValues("stats")(savedApiData.stats),
-  //     handleInputValues("types")(savedApiData.types),
-  //     handleInputValues("weight")(savedApiData.weight);
-  //   };
+  // Adds id/value data to IndexedDB
+  function addToDb() {
+    handleInputValues("abilities")(savedApiData.abilities);
+    handleInputValues("base_experience")(savedApiData.base_experience);
+    handleInputValues("forms")(savedApiData.forms);
+    handleInputValues("game_indices")(savedApiData.game_indices);
+    handleInputValues("height")(savedApiData.height);
+    handleInputValues("held_items")(savedApiData.held_items);
+    handleInputValues("id")(savedApiData.id);
+    handleInputValues("is_default")(savedApiData.is_default);
+    handleInputValues("location_area_encounters")(
+      savedApiData.location_area_encounters
+    );
+    handleInputValues("moves")(savedApiData.moves);
+    handleInputValues("name")(savedApiData.name);
+    handleInputValues("order")(savedApiData.order);
+    handleInputValues("past_types")(savedApiData.past_types);
+    handleInputValues("species")(savedApiData.species);
+    handleInputValues("sprites")(savedApiData.sprites);
+    handleInputValues("stats")(savedApiData.stats);
+    handleInputValues("types")(savedApiData.types);
+    handleInputValues("weight")(savedApiData.weight);
+  }
 
   return (
     <>
@@ -197,31 +198,7 @@ export default function ApiFetch({ db }) {
         <button type="button" onClick={getApiData}>
           Click for API fetch
         </button>
-        <button
-          type="button"
-          onClick={() => {
-            handleInputValues("abilities")(savedApiData.abilities);
-            handleInputValues("base_experience")(savedApiData.base_experience);
-            handleInputValues("forms")(savedApiData.forms);
-            handleInputValues("game_indices")(savedApiData.game_indices);
-            handleInputValues("height")(savedApiData.height);
-            handleInputValues("held_items")(savedApiData.held_items);
-            handleInputValues("id")(savedApiData.id);
-            handleInputValues("is_default")(savedApiData.is_default);
-            handleInputValues("location_area_encounters")(
-              savedApiData.location_area_encounters
-            );
-            handleInputValues("moves")(savedApiData.moves);
-            handleInputValues("name")(savedApiData.name);
-            handleInputValues("order")(savedApiData.order);
-            handleInputValues("past_types")(savedApiData.past_types);
-            handleInputValues("species")(savedApiData.species);
-            handleInputValues("sprites")(savedApiData.sprites);
-            handleInputValues("stats")(savedApiData.stats);
-            handleInputValues("types")(savedApiData.types);
-            handleInputValues("weight")(savedApiData.weight);
-          }}
-        >
+        <button type="button" onClick={addToDb}>
           Save API data to Local DB
         </button>
 
