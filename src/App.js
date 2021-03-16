@@ -23,10 +23,11 @@ export default function App() {
 // Element: Container
 const Container = styled.div`
   align-items: center;
-  background-color: #f7f8fa;
+  background-color: #eaeaec;
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-height: 100vh;
   justify-content: center;
   width: 100%;
 `;

@@ -191,6 +191,22 @@ export default function ApiFetch({ db }) {
     handleInputValues("weight")(savedApiData.weight);
   }
 
+  // Delete IndexedDB ApiDb database
+  function pleaseDelete() {
+    indexedDB.deleteDatabase("ApiDb").onsuccess = function () {
+      console.log("ApiDb Delete Successful");
+    };
+  }
+
+  // Delete IndexedDB data on browser/tab close and/or refresh
+  // ... prompts user that they are about to leave the page/lose data
+  // window.addEventListener("beforeunload", () => pleaseDelete());
+  window.addEventListener("beforeunload", (e) => {
+    e.preventDefault();
+    e.returnValue = "Are you sure you want to close?";
+    pleaseDelete();
+  });
+
   return (
     <>
       <Container>
