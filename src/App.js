@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+// Import: Packages
+import React from "react";
+import styled from "styled-components/macro";
+import Dexie from "dexie";
 
-function App() {
+// Import: Components
+import { ApiFetch } from "./app/components";
+
+// Component: App
+export default function App() {
+  // Dexie: declaring IndexedDB apiDb
+  const apiDb = new Dexie("ApiDb");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Container>
+        <ApiFetch db={apiDb} />
+      </Container>
+    </>
   );
 }
 
-export default App;
+// Element: Container
+const Container = styled.div`
+  align-items: center;
+  background-color: #f7f8fa;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+`;
